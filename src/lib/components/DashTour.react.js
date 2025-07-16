@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import Tour from "reactour";
 import '../components/css/DashTour.css'
 
+/**
+ * DashTour is a component that provides guided tours for Dash applications.
+ * It wraps the reactour library to create interactive step-by-step tours.
+ */
 export default class DashTour extends Component {
     constructor(props) {
         super(props);
@@ -163,7 +167,7 @@ DashTour.propTypes = {
      * Disable all keyboard navigation (next and prev step) when true, disable only selected keys when array
      * Type: bool | array(['esc', 'right', 'left'])
      */
-    disableKeyboardNavigation: PropTypes.oneOf([
+    disableKeyboardNavigation: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.array
     ]),

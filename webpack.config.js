@@ -49,6 +49,7 @@ module.exports = (env, argv) => {
             filename,
             library: dashLibraryName,
             libraryTarget: 'window',
+            hashFunction: 'sha256',
         },
         devtool,
         externals,

@@ -4,14 +4,15 @@
   "description": "Tour component for Dash (made by plotly) to give your dash app a tour",
   "main": "build/index.js",
   "scripts": {
-    "start": "webpack-serve --config ./webpack.serve.config.js --open",
+    "start": "NODE_OPTIONS='--openssl-legacy-provider' webpack-serve --config ./webpack.serve.config.js --open",
     "validate-init": "python _validate_init.py",
     "prepublishOnly": "npm run validate-init",
-    "build:js": "webpack --mode production",
+    "build:js": "NODE_OPTIONS='--openssl-legacy-provider' webpack --mode production",
+    "build:py": "dash-generate-components ./src/lib/components dash_tour_component -p package-info.json",
     "build:py_and_r": "dash-generate-components ./src/lib/components dash_tour_component -p package-info.json --r-prefix 'r_' --jl-prefix 'jl_'",
     "build:py_and_r-activated": "(. venv/bin/activate || venv\\scripts\\activate && npm run build:py_and_r)",
-    "build": "npm run build:js && npm run build:py_and_r",
-    "build:activated": "npm run build:js && npm run build:py_and_r-activated"
+    "build": "npm run build:js && npm run build:py",
+    "build:activated": "npm run build:js && npm run build:py"
   },
   "author": "Matthijs Visser <vldmatthijs@gmail.com>",
   "license": "MIT",
