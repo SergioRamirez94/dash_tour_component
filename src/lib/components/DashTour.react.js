@@ -8,6 +8,54 @@ export default class DashTour extends Component {
         super(props);
     }
 
+    componentDidUpdate(prevProps) {
+        const {steps, isOpen, CurrentStep} = this.props;
+
+        if (!steps) return;
+
+        const prevStepIndex = (prevProps.CurrentStep || 0) - 1;
+        const newStepIndex = (CurrentStep || 0) - 1;
+
+        if (prevProps.isOpen && !isOpen) {
+            // tour was closed, remove any highlights
+            if (steps[prevStepIndex]) {
+                this.removeExtraHighlights(steps[prevStepIndex].selector);
+            }
+        }
+
+        if (isOpen) {
+            // if step changed remove previous and add new
+            if (prevProps.CurrentStep !== CurrentStep || !prevProps.isOpen) {
+                if (steps[prevStepIndex]) {
+                    this.removeExtraHighlights(steps[prevStepIndex].selector);
+                }
+                if (steps[newStepIndex]) {
+                    this.addExtraHighlights(steps[newStepIndex].selector);
+                }
+            }
+        }
+    }
+
+    addExtraHighlights = (selectors) => {
+        if (!selectors) return;
+        const list = Array.isArray(selectors) ? selectors : selectors.split(',');
+        list.forEach(sel => {
+            document.querySelectorAll(sel.trim()).forEach(el => {
+                el.classList.add('dash-tour-highlight');
+            });
+        });
+    };
+
+    removeExtraHighlights = (selectors) => {
+        if (!selectors) return;
+        const list = Array.isArray(selectors) ? selectors : selectors.split(',');
+        list.forEach(sel => {
+            document.querySelectorAll(sel.trim()).forEach(el => {
+                el.classList.remove('dash-tour-highlight');
+            });
+        });
+    };
+
     closeTour = () => {
         // eslint-disable-next-line no-invalid-this
         this.props.setProps({ isOpen: false});
@@ -57,11 +105,13 @@ DashTour.propTypes = {
      * The steps in the tour component
      */
     steps: PropTypes.arrayOf(PropTypes.shape({
-        'selector': PropTypes.string,
-        'content': PropTypes.oneOfType([
+        'selector': PropTypes.oneOfType([
             PropTypes.string,
-            // PropTypes.element,
-            // PropTypes.func,
+            PropTypes.arrayOf(PropTypes.string)
+        ]),
+        'content': PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.func,
         ]).isRequired,
         'position':PropTypes.oneOfType([
             PropTypes.arrayOf(PropTypes.number),

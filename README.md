@@ -28,8 +28,8 @@ Default: string
 - isOpen (boolean; optional): Whether the Tour component is currently open
 - steps (dict; optional): The steps in the tour component. steps has the following type: list of dicts containing keys 'selector', 'content', 'position', 'action', 'style', 'stepInteraction', 'navDotAriaLabel'.
 Those keys have the following types:
-  - selector (string; optional)
-  - content (string; required)
+  - selector (string | list of strings; optional)
+  - content (string | dash component; required)
   - position (list of numbers | a value equal to: 'top', 'right', 'bottom', 'left', 'center'; optional)
   - action (optional)
   - style (dict; optional)

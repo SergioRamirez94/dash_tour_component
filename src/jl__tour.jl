@@ -15,7 +15,7 @@ Default: string
 - `isOpen` (Bool; optional): Whether the Tour component is currently open
 - `steps` (optional): The steps in the tour component. steps has the following type: Array of lists containing elements 'selector', 'content', 'position', 'action', 'style', 'stepInteraction', 'navDotAriaLabel'.
 Those elements have the following types:
-  - `selector` (String; optional)
+  - `selector` (String | Array{String}; optional)
   - `content` (a list of or a singular dash component, string or number | dash component; required)
   - `position` (Array of Reals | a value equal to: 'top', 'right', 'bottom', 'left', 'center'; optional)
   - `action` (optional)
