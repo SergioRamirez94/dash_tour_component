@@ -23,6 +23,10 @@ class DashTour(Component):
 
     @_explicitize_args
     def __init__(self, children=None, **kwargs):
+        # Dash adds `_explicit_args` to kwargs when the component is
+        # initialised.  The base ``Component`` does not expect this
+        # argument, so remove it before calling ``super``.
+        kwargs.pop("_explicit_args", None)
         super(DashTour, self).__init__(children=children, **kwargs)
 
 # Define JavaScript and CSS assets
