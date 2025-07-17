@@ -28,11 +28,7 @@ tour_steps = [
 # Layout de la aplicación
 app.layout = html.Div([
     # Componente DashTour
-    DashTour(
-        id="tour",
-        steps=tour_steps,
-        isOpen=False,
-    ),
+
     
     # Contenido del dashboard
     html.Div([
@@ -79,7 +75,12 @@ app.layout = html.Div([
             "padding": "20px",
             "backgroundColor": "#f8f9fa",
             "borderRadius": "5px"
-        })
+        }),
+        DashTour(
+        id="tour",
+        steps=tour_steps,
+        isOpen=False,
+    ),
     ], style={"padding": "20px"})
 ])
 
@@ -126,8 +127,10 @@ def start_tour(n_clicks):
         return True
     return False
 
+
+
 if __name__ == "__main__":
     print("🚀 Iniciando el servidor Dash...")
-    print("📱 Abre tu navegador en: http://127.0.0.1:8050")
+    print("📱 Abre tu navegador en: http://127.0.0.1:8051")
     print("🎯 Haz clic en 'Iniciar Tour' para probar el componente DashTour")
-    app.run(debug=True, port=8050)
+    app.run(debug=True, port=8051)
