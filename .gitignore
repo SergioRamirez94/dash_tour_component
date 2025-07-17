@@ -274,4 +274,6 @@ bh_unicode_properties.cache
 GitHub.sublime-settings
 
 # Project exclude paths
-/dash_tour_component/
+# Exclude generated component folder by default. Commented out to allow
+# committing the minimal Python package needed for examples.
+#/dash_tour_component/
